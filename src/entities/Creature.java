@@ -13,6 +13,24 @@ public abstract class Creature extends Entity {
     protected boolean isAlive;
     protected Class<?> food;
 
+    public void makeMove(WorldMap worldMap) {
+        stepsLeft = this.getSpeed();
+        PathBuilder pathBuilder = new PathBuilder(worldMap, this);
+        while (stepsLeft > 0) {
+            List<Coordinate> path = pathBuilder.getPath();
+            if (path.isEmpty()) {
+                break;
+            }
+            path.removeLast();
+            Coordinate nextStep = path.getLast();
+            if (worldMap.isEmpty(nextStep)) {
+                takeStep(worldMap, nextStep);
+            } else if (worldMap.get(nextStep).getClass() == this.food) {
+                eat(worldMap, nextStep);
+            }
+        }
+    }
+
     public boolean isAlive() {
         return isAlive;
     }
@@ -39,24 +57,6 @@ public abstract class Creature extends Entity {
 
     public Class<?> getFood() {
         return food;
-    }
-
-    public void makeMove(WorldMap worldMap) {
-        stepsLeft = this.getSpeed();
-        PathBuilder pathBuilder = new PathBuilder(worldMap, this);
-        while (stepsLeft > 0) {
-            List<Coordinate> path = pathBuilder.getPath();
-            if (path.isEmpty()) {
-                break;
-            }
-            path.removeLast();
-            Coordinate nextStep = path.getLast();
-            if (worldMap.isEmpty(nextStep)) {
-                takeStep(worldMap, nextStep);
-            } else if (worldMap.get(nextStep).getClass() == this.food) {
-                eat(worldMap, nextStep);
-            }
-        }
     }
 
     protected void takeStep(WorldMap worldMap, Coordinate coordinate) {

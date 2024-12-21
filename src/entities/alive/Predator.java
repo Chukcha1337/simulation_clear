@@ -7,7 +7,7 @@ import supportClasses.WorldMap;
 import java.util.Random;
 
 public class Predator extends Creature {
-    private final int attackDamage = 4;
+    private final int attackDamage = 3;
 
     public Predator() {
         health = 9;

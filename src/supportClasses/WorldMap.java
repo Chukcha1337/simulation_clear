@@ -1,6 +1,7 @@
 package supportClasses;
 
 import entities.Entity;
+
 import java.util.*;
 
 public class WorldMap {
@@ -28,7 +29,7 @@ public class WorldMap {
     }
 
     public void put(Coordinate coordinate, Entity entity) {
-        WORLD_MAP.put(coordinate,entity);
+        WORLD_MAP.put(coordinate, entity);
     }
 
     public Entity get(Coordinate coordinate) {
@@ -79,6 +80,5 @@ public class WorldMap {
     public double getShortestPathDistance(Coordinate firstCoordinate, Coordinate secondCoordinate) {
         return Math.sqrt((Math.pow(firstCoordinate.getColumn() - secondCoordinate.getColumn(), 2) + Math.pow(firstCoordinate.getRow() - secondCoordinate.getRow(), 2)));
     }
-
 }
 

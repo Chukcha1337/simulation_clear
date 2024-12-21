@@ -2,7 +2,6 @@ package actions;
 
 import entities.Entity;
 import entities.alive.Herbivore;
-import entities.alive.Predator;
 import supportClasses.Coordinate;
 
 public class HerbivoreSpawnAction extends SpawnAction {
@@ -14,12 +13,12 @@ public class HerbivoreSpawnAction extends SpawnAction {
     }
 
     @Override
-    public double getMaxQuantityMultiplier() {
+    protected double getMaxQuantityMultiplier() {
         return MAX_HERBIVORES_MULTIPLIER;
     }
 
     @Override
-    public Entity createNewEntity(Coordinate coordinate) {
+    protected Entity createNewEntity(Coordinate coordinate) {
         return new Herbivore();
     }
 }

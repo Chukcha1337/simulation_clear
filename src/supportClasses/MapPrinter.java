@@ -1,6 +1,5 @@
 package supportClasses;
 
-import entities.Creature;
 import entities.Entity;
 import entities.alive.Herbivore;
 import entities.alive.Predator;
@@ -9,13 +8,15 @@ import entities.unalive.Rock;
 import entities.unalive.Tree;
 
 public class MapPrinter {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_GREEN_BACKGROUND = "\033[0;102m";
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_BLACK = "\u001B[30m";
+    private static final String ANSI_GREEN_BACKGROUND = "\033[0;102m";
     private final WorldMap worldMap;
+    private final CounterOfIterations counterOfIterations;
 
-    public MapPrinter(WorldMap worldMap) {
+    public MapPrinter(WorldMap worldMap, CounterOfIterations counterOfIterations) {
         this.worldMap = worldMap;
+        this.counterOfIterations = counterOfIterations;
     }
 
     public void printMap() {
@@ -31,7 +32,10 @@ public class MapPrinter {
                 }
             }
             System.out.println(line);
-        };
+        }
+
+        counterOfIterations.increaseCounter();
+        System.out.println(counterOfIterations.getCounter());
     }
 
     private String getEntitySprite(Entity entity) {
@@ -50,10 +54,10 @@ public class MapPrinter {
         if (entity instanceof Grass) {
             return ANSI_GREEN_BACKGROUND + Sprites.GRASS.getSprite() + ANSI_RESET;
         }
-        return " ? ";
+        return " error ";
     }
 
-    public String getSpriteForEmptyPlace() {
+    private String getSpriteForEmptyPlace() {
         return (ANSI_GREEN_BACKGROUND + Sprites.EMPTY_PLACE.getSprite() + ANSI_RESET);
     }
 }

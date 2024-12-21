@@ -1,11 +1,7 @@
 package supportClasses;
 
-
 import entities.Entity;
-
-
 import java.util.*;
-
 
 public class WorldMap {
     private final int ROWS;
@@ -38,6 +34,7 @@ public class WorldMap {
     public Entity get(Coordinate coordinate) {
         return WORLD_MAP.get(coordinate);
     }
+
     public void remove(Coordinate coordinate) {
         WORLD_MAP.remove(coordinate);
     }
@@ -61,6 +58,15 @@ public class WorldMap {
                 coordinate.getColumn() >= COLUMNS);
     }
 
+    public Coordinate getRandomEmptyPlace(Random random) {
+        while (true) {
+            Coordinate randomCoordinate = new Coordinate(random.nextInt(this.getRows()), random.nextInt(this.getColumns()));
+            if (this.isEmpty(randomCoordinate)) {
+                return randomCoordinate;
+            }
+        }
+    }
+
     public Set<Coordinate> getNearestLocations(Coordinate coordinate) {
         Set<Coordinate> nearestLocations = new HashSet<>();
         nearestLocations.add(new Coordinate(coordinate.getRow() + 1, coordinate.getColumn()));
@@ -68,6 +74,10 @@ public class WorldMap {
         nearestLocations.add(new Coordinate(coordinate.getRow(), coordinate.getColumn() + 1));
         nearestLocations.add(new Coordinate(coordinate.getRow(), coordinate.getColumn() - 1));
         return nearestLocations;
+    }
+
+    public double getShortestPathDistance(Coordinate firstCoordinate, Coordinate secondCoordinate) {
+        return Math.sqrt((Math.pow(firstCoordinate.getColumn() - secondCoordinate.getColumn(), 2) + Math.pow(firstCoordinate.getRow() - secondCoordinate.getRow(), 2)));
     }
 
 }

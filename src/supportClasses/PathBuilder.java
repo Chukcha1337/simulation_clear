@@ -1,7 +1,7 @@
 package supportClasses;
+
 import entities.Creature;
 import java.util.*;
-
 
 public class PathBuilder {
     private TargetSetter targetSetter;
@@ -79,7 +79,7 @@ public class PathBuilder {
                 Coordinate next = null;
                 for (Coordinate coordinate : worldMap.getNearestLocations(path.getLast())) {
                     if (exploredLocations.contains(coordinate)) {
-                        double distance = targetSetter.getShortestPathDistance(coordinate, start);
+                        double distance = worldMap.getShortestPathDistance(coordinate, start);
                         if (distance < maxDistance) {
                             maxDistance = distance;
                             next = coordinate;
@@ -103,7 +103,7 @@ public class PathBuilder {
                 coordinateToCheck = coordinate;
                 break;
             }
-            double distance = targetSetter.getShortestPathDistance(coordinate, target);
+            double distance = worldMap.getShortestPathDistance(coordinate, target);
             if (distance < maxDistance) {
                 maxDistance = distance;
                 coordinateToCheck = coordinate;

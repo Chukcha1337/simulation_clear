@@ -1,6 +1,3 @@
-import actions.Action;
-import actions.GrassSpawnAction;
-import supportClasses.MapPrinter;
 import supportClasses.Simulation;
 import supportClasses.WorldMap;
 

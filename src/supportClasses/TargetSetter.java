@@ -2,7 +2,6 @@ package supportClasses;
 
 import entities.Creature;
 import entities.Entity;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,16 +33,12 @@ public class TargetSetter {
         double ShortestDistance = worldMap.getMapMaxDistance();
         Coordinate targetCoordinate = creatureCurrentCoordinate;
         for (Coordinate coordinate : AllTargets) {
-            double distanceToCurrentTarget = getShortestPathDistance(creatureCurrentCoordinate, coordinate);
+            double distanceToCurrentTarget = worldMap.getShortestPathDistance(creatureCurrentCoordinate, coordinate);
             if (distanceToCurrentTarget < ShortestDistance) {
                 ShortestDistance = distanceToCurrentTarget;
                 targetCoordinate = coordinate;
             }
         }
         return targetCoordinate;
-    }
-
-    public double getShortestPathDistance(Coordinate firstCoordinate, Coordinate secondCoordinate) {
-        return Math.sqrt((Math.pow(firstCoordinate.getColumn() - secondCoordinate.getColumn(), 2) + Math.pow(firstCoordinate.getRow() - secondCoordinate.getRow(), 2)));
     }
 }

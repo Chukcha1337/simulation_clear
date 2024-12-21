@@ -1,7 +1,6 @@
 package actions;
 
 import entities.Entity;
-import entities.alive.Predator;
 import entities.unalive.Grass;
 import supportClasses.Coordinate;
 
@@ -14,12 +13,12 @@ public class GrassSpawnAction extends SpawnAction {
     }
 
     @Override
-    public double getMaxQuantityMultiplier() {
+    protected double getMaxQuantityMultiplier() {
         return MAX_GRASS_MULTIPLIER;
     }
 
     @Override
-    public Entity createNewEntity(Coordinate coordinate) {
+    protected Entity createNewEntity(Coordinate coordinate) {
         return new Grass();
     }
 }

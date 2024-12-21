@@ -13,12 +13,12 @@ public class TreeSpawnAction extends SpawnAction {
     }
 
     @Override
-    public double getMaxQuantityMultiplier() {
+    protected double getMaxQuantityMultiplier() {
         return MAX_TREES_MULTIPLIER;
     }
 
     @Override
-    public Entity createNewEntity(Coordinate coordinate) {
+    protected Entity createNewEntity(Coordinate coordinate) {
         return new Tree();
     }
 }

@@ -1,7 +1,5 @@
 package entities.alive;
 
-import actions.PredatorSpawnAction;
-import actions.SpawnAction;
 import entities.Creature;
 import supportClasses.Coordinate;
 import supportClasses.WorldMap;
@@ -27,9 +25,9 @@ public class Predator extends Creature {
             if (herbivore.getHealth() <= 0) {
                 kill(herbivore);
                 takeStep(worldMap, coordinate);
-            } else stepsLeft--;
+            } else decreaseStepsLeft();
         }
-        stepsLeft--;
+        decreaseStepsLeft();
 
     }
 }

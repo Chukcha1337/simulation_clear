@@ -1,7 +1,5 @@
 package entities.alive;
 
-import actions.HerbivoreSpawnAction;
-import actions.SpawnAction;
 import entities.Creature;
 import entities.unalive.Grass;
 import supportClasses.Coordinate;

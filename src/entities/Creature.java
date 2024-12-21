@@ -1,7 +1,6 @@
 package entities;
 
 import supportClasses.Coordinate;
-import supportClasses.MapPrinter;
 import supportClasses.PathBuilder;
 import supportClasses.WorldMap;
 
@@ -20,6 +19,10 @@ public abstract class Creature extends Entity {
 
     protected void kill(Creature creature) {
         creature.isAlive = false;
+    }
+
+    public void decreaseStepsLeft() {
+        stepsLeft--;
     }
 
     public void reduceHealth(int damage) {
@@ -47,10 +50,11 @@ public abstract class Creature extends Entity {
                 break;
             }
             path.removeLast();
-            if (worldMap.isEmpty(path.getLast())) {
-                takeStep(worldMap, path.getLast());
-            } else if (worldMap.get(path.getLast()).getClass() == this.food) {
-                eat(worldMap, path.getLast());
+            Coordinate nextStep = path.getLast();
+            if (worldMap.isEmpty(nextStep)) {
+                takeStep(worldMap, nextStep);
+            } else if (worldMap.get(nextStep).getClass() == this.food) {
+                eat(worldMap, nextStep);
             }
         }
     }
@@ -59,7 +63,7 @@ public abstract class Creature extends Entity {
         Coordinate from = worldMap.getCoordinate(this);
         worldMap.put(coordinate, this);
         worldMap.remove(from);
-        stepsLeft--;
+        decreaseStepsLeft();
     }
 
     protected abstract void eat(WorldMap worldMap, Coordinate coordinate);

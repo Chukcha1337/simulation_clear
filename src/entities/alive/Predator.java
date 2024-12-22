@@ -3,7 +3,6 @@ package entities.alive;
 import entities.Creature;
 import supportClasses.Coordinate;
 import supportClasses.WorldMap;
-
 import java.util.Random;
 
 public class Predator extends Creature {
